@@ -48,6 +48,11 @@ section * {
     z-index: 1;
 }
 
+#work::before {
+    background: rgba(2, 2, 2, 0.5); /* Dark purple overlay */
+    z-index: 0; /* Place behind content */
+}
+
 /* Navigation Bar */
 nav {
     position: fixed;
@@ -350,7 +355,7 @@ h1 {
     justify-content: center;
     align-items: center;
     padding: 4rem 1rem;
-    background: url('images/work-bg.jpeg') no-repeat center center/cover;
+    background: url('images/work-images/work-bg.jpeg') no-repeat center center/cover;
     text-align: left;
 }
 
@@ -602,7 +607,9 @@ h1 {
 
 /* Resume Header and Button Animation */
 .resume-container {
-    opacity: 0; /* Start invisible */
+    position: relative; /* Enable stacking context */
+    z-index: 10; /* Ensure it stacks above the overlay */
+    opacity: 0; 
     animation: fadeIn 1s forwards; 
     animation-delay: 3s; /* Delayed until after the list contents */
 }
@@ -615,6 +622,8 @@ h1 {
 }
 
 .resume-button {
+    position: relative; 
+    z-index: 20; /* Bring the button above any other elements */
     display: inline-block;
     padding: 0.8rem 1.5rem;
     background-color: #00bcd4;
@@ -626,6 +635,7 @@ h1 {
     text-transform: uppercase;
     text-decoration: none; 
     transition: background-color 0.3s;
+    pointer-events: auto;
 }
 
 .resume-button:hover {
@@ -884,10 +894,9 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #f0f8ff; /* Light blue background */
+    background-color: #808080; 
     color: #fff;
     /* padding: 4rem 2rem; */
-    background: rgba(0, 0, 0, 0.5);  /* Semi-transparent overlay */
 }
 
 .contact-header {
